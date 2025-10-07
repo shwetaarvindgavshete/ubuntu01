@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact & Book Table - Restaurant</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+
+    header {
+      background-color: #34495e;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      margin-bottom: 40px;
+    }
+
+    .contact-info p {
+      margin: 8px 0;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #e67e22;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d35400;
+    }
+
+    .confirmation {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #dff0d8;
+      border-left: 5px solid #3c763d;
+      display: none;
+      color: #3c763d;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        margin: 15px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Contact Us & Book a Table</h1>
+  </header>
+
+  <div class="container">
+    <!-- Contact Information -->
+    <section class="contact-info">
+      <h2>Contact Information</h2>
+      <p><strong>Address:</strong> 123 Food Street, Gourmet City, FL 12345</p>
+      <p><strong>Phone:</strong> +1 (234) 567-8901</p>
+      <p><strong>Email:</strong> contact@gourmethaven.com</p>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking-form">
+      <h2>Book a Table</h2>
+      <form id="bookingForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required />
+
+        <label for="date">Booking Date:</label>
+        <input type="date" id="date" required />
+
+        <label for="time">Booking Time:</label>
+        <input type="time" id="time" required />
+
+        <label for="guests">Number of Guests:</label>
+        <input type="number" id="guests" min="1" max="20" required />
+
+        <label for="preference">Table Preference:</label>
+        <select id="preference" required>
+          <option value="">Select Preference</option>
+          <option value="Window">Window</option>
+          <option value="Outdoor">Outdoor</option>
+          <option value="Private Room">Private Room</option>
+          <option value="No Preference">No Preference</option>
+        </select>
+
+        <button type="submit">Confirm Booking</button>
+      </form>
+
+      <div class="confirmation" id="confirmationMessage"></div>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const guests = document.getElementById('guests').value;
+      const preference = document.getElementById('preference').value;
+
+      confirmation.innerHTML = `
+        <strong>Thank you, ${name}!</strong><br>
+        Your table for <strong>${guests}</strong> guest(s) on <strong>${date}</strong> at <strong>${time}</strong> has been confirmed.<br>
+        Table Preference: <em>${preference}</em>.
+      `;
+
+      confirmation.style.display = 'block';
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>

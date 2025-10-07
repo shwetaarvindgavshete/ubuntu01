@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Table Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .confirmation {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #d4edda;
+      border-left: 5px solid #28a745;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Book a Table</h2>
+    <form id="bookingForm">
+      <label for="name">full name:shweta gavshete</label>
+      <input type="text" id="name" required />
+
+      <label for="date">date:15/03/2025</label>
+      <input type="date" id="date" required />
+
+      <label for="time">Time:12:00</label>
+      <input type="time" id="time" required />
+
+      <label for="guests">Number of Guests:2</label>
+      <input type="number" id="guests" min="1" max="20" required />
+
+      <label for="table">Table Preference:</label>
+      <select id="table" required>
+        <option value="">Select...</option>
+        <option value="Window">Window</option>
+        <option value="Outdoor">Outdoor</option>
+        <option value="Private">Private</option>
+        <option value="No Preference">No Preference</option>
+      </select>
+
+      <button type="submit">Book Now</button>
+    </form>
+
+    <div class="confirmation" id="confirmationMessage"></div>
+  </div>
+
+  <script>
+    const bookingForm = document.getElementById('bookingForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const guests = document.getElementById('guests').value;
+      const table = document.getElementById('table').value;
+
+      confirmationMessage.innerHTML = `
+        <strong>Thank you, ${name}!</strong><br>
+        Your table for ${guests} guest(s) has been booked on <strong>${date}</strong> at <strong>${time}</strong>.<br>
+        Table Preference: <em>${table}</em>.
+      `;
+
+      confirmationMessage.style.display = 'block';
+      bookingForm.reset();
+    });
+  </script>
+
+</body>
+</html>
